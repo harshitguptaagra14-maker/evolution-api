@@ -6,16 +6,16 @@ services:
     region: ohio
     dockerContext: .
     dockerfilePath: ./Dockerfile
+    # This line forces the migration to see your database
+    buildCommand: npx prisma migrate deploy
     envVars:
-      - key: AUTHENTICATION_API_KEY
-        generateValue: true
       - key: DATABASE_URL
-        fromDatabase:
-          name: evolution-db
-          property: connectionString
+        value: postgresql://evolution_db_v0yp_user:7be5xvmD0DGcqBdelmYxDb5yDMswrH6j@dpg-d6s0e2chg0os73etdjog-a:5432/evolution_db_v0yp
+      - key: DATABASE_TYPE
+        value: postgres
+      - key: DATABASE_PROVIDER
+        value: postgresql
+      - key: AUTHENTICATION_API_KEY
+        value: mysecretkey123 # Change this to your own password
       - key: REDIS_URI
-        sync: false # We will add this manually in the dashboard
-
-databases:
-  - name: evolution-db
-    plan: free
+        sync: false # Make sure you manually pasted your Redis Internal URL in the Render Dashboard
