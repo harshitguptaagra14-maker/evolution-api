@@ -14,17 +14,8 @@ services:
           name: evolution-db
           property: connectionString
       - key: REDIS_URI
-        fromService:
-          type: redis
-          name: evolution-redis
-          property: connectionString
+        sync: false # We will add this manually in the dashboard
 
 databases:
   - name: evolution-db
     plan: free
-
-# In Blueprints, the section MUST be named 'redis'
-redis:
-  - name: evolution-redis
-    plan: free
-    ipAllowList: [] # This allows the API to talk to Redis
