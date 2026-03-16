@@ -23,6 +23,6 @@ databases:
   - name: evolution-db
     plan: free
 
-kv:
+keyValue:
   - name: evolution-redis
     plan: free
